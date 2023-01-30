@@ -2,21 +2,39 @@
 <html lang="en">
 <head>
     <title>Webpage Form</title>
+    <style>
+        body
+        {
+            background: linear-gradient(90deg,yellow,green);
+        }
+        #one:hover 
+        {
+            background-color: aquamarine;
+            border-radius: 75px;
+            border: 1px solid black;
+        }
+    </style>
 </head>
 <body>
     <center>
         <h1>Insert Webapege Details</h1>
         <form method="POST">
             {% csrf_token %}
-            <label for="topic">topic_name</label>
-            <input type="text" name="topic" id="topic">
-            <label for="name">name</label>
-            <input type="text" name="name" id="name">
-            <label for="url">url</label>
-            <input type="url" name="url" id="url">
-        <br><br>
-        <input type="submit" value="Insert Webpage">
+            <label for="topic">Insert Topic</label>
+            <select name="topic" id="topic">
+                {% for to in topics %}
+                    <option value="{{to}}">{{to.topic_name}}</option>
+                {% endfor %}
+            </select>
+            <br><br>
+            <label for="na">Name</label>
+            <input type="text" name="na" id="na">
+            <label for="ur">URL</label>
+            <input type="url" name="ur" id="ur">
+            <br><br>
+            <input id="one" type="submit" value="Insert Webpage">
         </form>
+        
     </center>
 </body>
 </html>

@@ -2,44 +2,48 @@ from django.shortcuts import render
 from app.models import *
 from django.http import HttpResponse
 # Create your views here.
-def insert_topic(request):
+def Form_Topic(request):
     if request.method=="POST":
         tn=request.POST['topic']
         T=Topic.objects.get_or_create(topic_name=tn)[0]
         T.save()
         return HttpResponse('insert_topic is done')
 
-    return render(request,'Form_Page.html')
+    return render(request,'Form_Topic.html')
 
 
 def Form_Webpage(request):
-
+    QST=Topic.objects.all()
+    d={'topics':QST}
     if request.method=="POST":
-        tn=request.POST['topic']
-        name=request.POST['name']
-        url=request.POST['url']
-        T=Topic.objects.get_or_create(topic_name=tn)[0]
+        topic=request.POST['topic']
+        na=request.POST['na']
+        ur=request.POST['ur']
+        T=Topic.objects.get_or_create(topic_name=topic)[0]
         T.save()
-        W=Webpage.objects.get_or_create(topic_name=T,name=name,url=url)[0]
+        W=Webpage.objects.get_or_create(topic_name=T,name=na,url=ur)[0]
         W.save()
-        return HttpResponse('Inserted Webpage successfull')
-    return render(request,'Form_Webpage.html')
+        return HttpResponse('Webpage inserted successfully')
+    return render(request,'Form_Webpage.html',d)
 
 
 
 
 
 def Form_Access(request):
+    QST=Topic.objects.all()
+    d={'topics':QST}
     if request.method=="POST":
-        tn=request.POST['topic']
-        name=request.POST['name']
-        url=request.POST['url']
-        date=request.POST['date']
-        T=Topic.objects.get_or_create(topic_name=tn)[0]
+        topic=request.POST['topic']
+        na=request.POST['na']
+        ur=request.POST['ur']
+        da=request.POST['da']
+        T=Topic.objects.get_or_create(topic_name=topic)[0]
         T.save()
-        W=Webpage.objects.get_or_create(topic_name=T,name=name,url=url)[0]
+        W=Webpage.objects.get_or_create(topic_name=T,name=na,url=ur)[0]
         W.save()
-        A=AccessRecords.objects.get_or_create(name=W,date=date)[0]
+        A=AccessRecords.objects.get_or_create(name=W,date=da)[0]
         A.save()
-        return HttpResponse('Inserted AccessRecords successfully')
-    return render(request,'Form_Access.html')
+        return HttpResponse('Inserted AccessRecord Successfully')
+    return render(request,'Form_Access.html',d)
+
