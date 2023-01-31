@@ -22,4 +22,6 @@ urlpatterns = [
     path('Form_Topic/',Form_Topic,name='Form_Topic'),
     path('Form_Webpage/',Form_Webpage,name='Form_Webpage'),
     path('Form_Access/',Form_Access,name='Form_Access'),
+    path('select_multiple/',select_multiple,name='select_multiple'),
+    path('checkbox/',checkbox,name='checkbox'),
 ]

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Checkbox</title>
+</head>
+<body>
+    <center>
+        <h1>Details_Checkbox</h1>
+        <form method="POST" >
+            {% csrf_token %}
+            {% for to in topics %}
+            <input type="checkbox" name="topic" id="topic" value="{{to}}">
+            <label for="topic">{{to.topic_name}}</label>
+            {% endfor %}
+            <br><br>
+            <input type="submit" value="checkbox">
+        </form>
+    </center>
+</body>
+</html>

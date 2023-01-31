@@ -47,3 +47,31 @@ def Form_Access(request):
         return HttpResponse('Inserted AccessRecord Successfully')
     return render(request,'Form_Access.html',d)
 
+def select_multiple(request):
+    QST=Topic.objects.all()
+    d={'topics':QST}
+    if request.method=="POST":
+        tos=request.POST.getlist('topic')
+        print(tos)
+        QSW=Webpage.objects.none()
+        for i in tos:
+            QSW=QSW|Webpage.objects.filter(topic_name=i)
+        d1={'webpages':QSW}
+        return render(request,'display_webpages.html',d1)
+
+    return render(request,'select_multiple.html',d)
+
+
+
+def checkbox(request):
+    QST=Topic.objects.all()
+    d={'topics':QST}
+    if request.method=="POST":
+        tos=request.POST.getlist('topic')
+        print(tos)
+        QSW=Webpage.objects.none()
+        for i in tos:
+            QSW=QSW|Webpage.objects.filter(topic_name=i)
+        d1={'webpages':QSW}
+        return render(request,'display_webpages.html',d1)
+    return render(request,'checkbox.html',d)
